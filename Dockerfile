@@ -18,6 +18,11 @@ RUN apt-get install -y openjdk-7-jdk \
 	wget \
 	git
 RUN apt-get autoremove
+RUN cd /tmp && \
+	wget https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 && \
+	tar -xjvf linux-amd64-github-release.tar.bz2 && \
+	mv bin/linux/amd64/github-release /usr/bin/ && \
+	rm -rf bin/
 RUN mkdir /buildAgent && cd /buildAgent && \
 	wget https://build.mbeddr.com/update/buildAgent.zip && \
 	unzip buildAgent.zip && \
