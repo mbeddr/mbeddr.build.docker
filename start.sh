@@ -8,5 +8,3 @@ export CONFIG_FILE=/buildAgent/conf/buildAgent.properties
 export PID_FILE=/run/tc-agent.pid
 
 /buildAgent/bin/agent.sh run
-
-echo "exited $0"
