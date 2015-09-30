@@ -4,19 +4,22 @@ RUN apt-get update
 RUN apt-get install -y openjdk-7-jdk \
 	ant \
 	build-essential \
+	bison \
+	ca-certificates \
+	curl \
+	flex \
 	g++ \
 	gcc \
-	flex \
-	bison \
-	make \
-	subversion \
+	gdb \
+	git \
 	libz-dev \
 	libwww-perl \
+	make \
 	patch \
-	gdb \
+	subversion \
 	unzip \
-	wget \
-	git
+	wget
+	
 RUN apt-get autoremove
 RUN cd /tmp && \
 	wget https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 && \
