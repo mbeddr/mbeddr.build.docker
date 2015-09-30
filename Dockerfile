@@ -18,7 +18,8 @@ RUN apt-get install -y openjdk-7-jdk \
 	patch \
 	subversion \
 	unzip \
-	wget
+	wget \
+	zip
 	
 RUN apt-get autoremove
 RUN cd /tmp && \
