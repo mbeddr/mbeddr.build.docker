@@ -1,7 +1,7 @@
 #mbeddr.build.docker
 
 This repository contains the source code for the docker images used to build mbeddr and other MPS based projects.
-It is basically a teamcity build agent with some additional packges for compiling.
+It is basically a teamcity build agent with some additional packages for compiling.
 
 Using the image is fairly simple:
 
