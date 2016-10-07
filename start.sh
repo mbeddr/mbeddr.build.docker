@@ -6,5 +6,6 @@ fi
 
 export CONFIG_FILE=/buildAgent/conf/buildAgent.properties
 export PID_FILE=/run/tc-agent.pid
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 /buildAgent/bin/agent.sh run
