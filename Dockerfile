@@ -16,6 +16,7 @@ RUN apt-get install -y openjdk-8-jdk \
 	libz-dev \
 	libwww-perl \
 	make \
+	g++-multilib \
 	patch \
 	subversion \
 	unzip \
