@@ -1,7 +1,7 @@
 FROM debian:jessie
 MAINTAINER Kolja Dummann <kolja.dummann@logv.ws>
 ADD ./backports.list /etc/apt/sources.list.d/backports.list
-RUN apt-get update 
+RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk \
 	ant \
 	build-essential \
@@ -17,12 +17,13 @@ RUN apt-get install -y openjdk-8-jdk \
 	libwww-perl \
 	make \
 	g++-multilib \
+	ia32-libs \
 	patch \
 	subversion \
 	unzip \
 	wget \
 	zip
-	
+
 RUN apt-get autoremove
 RUN cd /tmp && \
 	wget https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 && \
