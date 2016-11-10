@@ -1,6 +1,7 @@
 FROM debian:jessie
 MAINTAINER Kolja Dummann <kolja.dummann@logv.ws>
 ADD ./backports.list /etc/apt/sources.list.d/backports.list
+RUN dpkg --add-architecture i386
 RUN apt-get update
 RUN apt-get install -y openjdk-8-jdk \
 	ant \
@@ -17,7 +18,7 @@ RUN apt-get install -y openjdk-8-jdk \
 	libwww-perl \
 	make \
 	g++-multilib \
-	ia32-libs \
+	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
 	patch \
 	subversion \
 	unzip \
