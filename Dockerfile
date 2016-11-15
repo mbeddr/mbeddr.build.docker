@@ -23,6 +23,7 @@ RUN apt-get install -y openjdk-8-jdk \
 	subversion \
 	unzip \
 	wget \
+	xvfb \
 	zip
 
 RUN apt-get autoremove
