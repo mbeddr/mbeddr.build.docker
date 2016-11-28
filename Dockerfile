@@ -16,6 +16,7 @@ RUN apt-get install -y openjdk-8-jdk \
 	git \
 	libz-dev \
 	libwww-perl \
+	libxerces-c-dev \
 	make \
 	g++-multilib \
 	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
