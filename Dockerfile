@@ -2,8 +2,7 @@ FROM debian:jessie
 MAINTAINER Kolja Dummann <kolja.dummann@logv.ws>
 ADD ./backports.list /etc/apt/sources.list.d/backports.list
 RUN dpkg --add-architecture i386
-RUN apt-get update
-RUN apt-get install -y openjdk-8-jdk \
+RUN apt-get update && apt-get install -y openjdk-8-jdk \
 	ant \
 	build-essential \
 	bison \
