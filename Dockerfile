@@ -33,6 +33,16 @@ RUN cd /tmp && \
 	tar -xjvf linux-amd64-github-release.tar.bz2 && \
 	mv bin/linux/amd64/github-release /usr/bin/ && \
 	rm -rf bin/
+
+RUN \
+	cmake_major_minor=3.7 && \
+	cmake=cmake-${cmake_major_minor}.1-Linux-x86_64 && \
+	cd /tmp && \
+	wget https://cmake.org/files/v${cmake_major_minor}/${cmake}.tar.gz && \
+	tar -xzvf ${cmake}.tar.gz && \
+	cp -R ${cmake}/bin ${cmake}/share /usr && \
+	rm -rf ${cmake} ${cmake}.tar.gz
+
 RUN mkdir /buildAgent && cd /buildAgent && \
 	wget https://build.mbeddr.com/update/buildAgent.zip && \
 	unzip buildAgent.zip && \
