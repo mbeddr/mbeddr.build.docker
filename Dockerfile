@@ -54,4 +54,8 @@ RUN chmod +x /start
 VOLUME ["/build"]
 ENTRYPOINT ["/start"]
 COPY ./bin/* /usr/bin/
+RUN \
+	wget http://spinroot.com/spin/Bin/spin646_linux64.gz && \
+	gunzip spin646_linux64 && \
+	mv spin646_linux64 /usr/bin/spin
 RUN chmod +x /usr/bin/*
