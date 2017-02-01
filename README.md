@@ -12,7 +12,6 @@ docker run --name buildAgent1 -d --restart=always -e AGENT_NAME=awesomeAgent mbe
 
 If you run docker on a storage backend that supports size limits for the volumes it makes sense to limit the available disk space for the agent:
 
-````
 ```
 docker pull mbeddr/mbeddr.build.docker
 docker run --name buildAgent1 -d --restart=always --storage-opt size=50G -e AGENT_NAME=awesomeAgent mbeddr/mbeddr.build.docker
