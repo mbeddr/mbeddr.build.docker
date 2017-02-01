@@ -51,7 +51,6 @@ ADD ./start.sh /start
 RUN mkdir -p /root/.ssh
 ADD ./sshconfig /root/.ssh/config
 RUN chmod +x /start
-VOLUME ["/build"]
 ENTRYPOINT ["/start"]
 COPY ./bin/* /usr/bin/
 RUN \
