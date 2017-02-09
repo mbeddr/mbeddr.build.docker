@@ -7,12 +7,14 @@ RUN apt-get update && apt-get install -y openjdk-8-jdk \
 	build-essential \
 	bison \
 	ca-certificates \
+	cppcheck \
 	curl \
 	flex \
 	g++ \
 	gcc \
 	gdb \
 	git \
+	lcov \
 	libz-dev \
 	libwww-perl \
 	libxerces-c-dev \
