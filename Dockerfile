@@ -7,7 +7,6 @@ RUN apt-get update && apt-get -t jessie-backports install -y openjdk-8-jdk && ap
 	build-essential \
 	bison \
 	ca-certificates \
-	cppcheck \
 	curl \
 	flex \
 	g++ \
@@ -59,4 +58,14 @@ RUN \
 	wget http://spinroot.com/spin/Bin/spin646_linux64.gz && \
 	gunzip spin646_linux64 && \
 	mv spin646_linux64 /usr/bin/spin
+
+# Install our own cppcheck because 1.67 in jessie is buggy
+RUN \
+	cppcheck_version=1.77 && \
+	cd /tmp && \
+	wget -O cppcheck-${cppcheck_version}.tar.gz https://github.com/danmar/cppcheck/archive/${cppcheck_version}.tar.gz && \
+	tar -zxf cppcheck-${cppcheck_version}.tar.gz && \
+	(cd cppcheck-${cppcheck_version} && make install) && \
+	rm -rf cppcheck-${cppcheck_version}.tar.gz cppcheck-${cppcheck_version}
+
 RUN chmod +x /usr/bin/*
