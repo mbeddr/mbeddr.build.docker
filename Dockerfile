@@ -65,7 +65,9 @@ RUN \
 	cd /tmp && \
 	wget -O cppcheck-${cppcheck_version}.tar.gz https://github.com/danmar/cppcheck/archive/${cppcheck_version}.tar.gz && \
 	tar -zxf cppcheck-${cppcheck_version}.tar.gz && \
-	(cd cppcheck-${cppcheck_version} && make install) && \
-	rm -rf cppcheck-${cppcheck_version}.tar.gz cppcheck-${cppcheck_version}
+	apt-get -y install libpcre3-dev && \
+	(cd cppcheck-${cppcheck_version} && make install SRCDIR=build CFGDIR=/usr/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function") && \
+	rm -rf cppcheck-${cppcheck_version}.tar.gz cppcheck-${cppcheck_version} && \
+	apt-get -y purge libpcre3-dev && apt-get -y autoremove
 
 RUN chmod +x /usr/bin/*
