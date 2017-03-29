@@ -22,6 +22,7 @@ RUN apt-get update && apt-get -t jessie-backports install -y openjdk-8-jdk && ap
 	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
 	patch \
 	subversion \
+	supervisor \
 	unzip \
 	wget \
 	xvfb \
@@ -49,10 +50,11 @@ RUN mkdir /buildAgent && cd /buildAgent && \
 	chmod +x /buildAgent/bin/agent.sh
 ADD ./buildAgent.properties /buildAgent/conf/buildAgent.properties
 ADD ./start.sh /start
-RUN mkdir -p /root/.ssh
+RUN mkdir -p /root/.ssh /var/log/supervisor
 ADD ./sshconfig /root/.ssh/config
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /start
-ENTRYPOINT ["/start"]
+CMD ["/usr/bin/supervisord"]
 COPY ./bin/* /usr/bin/
 RUN \
 	wget http://spinroot.com/spin/Bin/spin646_linux64.gz && \
