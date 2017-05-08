@@ -72,4 +72,13 @@ RUN \
 	rm -rf cppcheck-${cppcheck_version}.tar.gz cppcheck-${cppcheck_version} && \
 	apt-get -y purge libpcre3-dev && apt-get -y autoremove
 
+RUN \
+	cd /tmp && \
+	wget -O z3.zip https://github.com/Z3Prover/z3/releases/download/z3-4.5.0/z3-4.5.0-x64-debian-8.5.zip && \
+	unzip z3.zip && \
+	mv z3-4.5.0-x64-debian-8.5/bin/z3 /usr/bin/ && \
+	rm -rf /tmp/z3-4.5.0-x64-debian-8.5 z3.zip
+
+
+
 RUN chmod +x /usr/bin/*
