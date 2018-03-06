@@ -26,9 +26,9 @@ RUN apt-get update && apt-get -t jessie-backports install -y openjdk-8-jdk && ap
 	unzip \
 	wget \
 	xvfb \
-	zip
+	zip \
+	&& apt-get autoremove
 
-RUN apt-get autoremove
 RUN cd /tmp && \
 	wget https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 && \
 	tar -xjvf linux-amd64-github-release.tar.bz2 && \
@@ -56,10 +56,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /start
 CMD ["/usr/bin/supervisord"]
 COPY ./bin/* /usr/bin/
-RUN \
-	wget http://spinroot.com/spin/Bin/spin646_linux64.gz && \
-	gunzip spin646_linux64 && \
-	mv spin646_linux64 /usr/bin/spin
 
 # Install our own cppcheck because 1.67 in jessie is buggy
 RUN \
@@ -79,6 +75,12 @@ RUN \
 	mv z3-4.5.0-x64-debian-8.5/bin/z3 /usr/bin/ && \
 	rm -rf /tmp/z3-4.5.0-x64-debian-8.5 z3.zip
 
+RUN cd /tmp \
+	&& wget https://bootstrap.pypa.io/get-pip.py \
+	&& python get-pip.py \
+	&& rm get-pip.py \
+	&& pip install mkdocs \
+	&& pip install mkdocs-cinder
 
 
 RUN chmod +x /usr/bin/*
