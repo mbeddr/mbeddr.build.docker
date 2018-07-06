@@ -1,8 +1,7 @@
-FROM debian:jessie
+FROM ubuntu:bionic
 MAINTAINER Kolja Dummann <kolja.dummann@logv.ws>
-ADD ./backports.list /etc/apt/sources.list.d/backports.list
 RUN dpkg --add-architecture i386
-RUN apt-get update && apt-get -t jessie-backports install -y openjdk-8-jdk && apt-get install -y \
+RUN apt-get update && apt-get install -y \
 	ant \
 	build-essential \
 	bison \
@@ -20,6 +19,7 @@ RUN apt-get update && apt-get -t jessie-backports install -y openjdk-8-jdk && ap
 	make \
 	g++-multilib \
 	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
+	openjdk-8-jdk \
 	patch \
 	subversion \
 	supervisor \
