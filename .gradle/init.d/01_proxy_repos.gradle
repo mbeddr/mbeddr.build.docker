@@ -1,0 +1,33 @@
+apply plugin: EnterpriseRepositoryPlugin
+
+class EnterpriseRepositoryPlugin implements Plugin<Gradle> {
+
+    void apply(Gradle gradle) {
+
+        gradle.allprojects { project ->
+            project.repositories {
+                String rawUrls = System.env.REPLACE_REPO_URL
+
+                def urlsToRemove = rawUrls.split(",")
+
+                // Remove all repositories not pointing to the undesired repos
+                all { ArtifactRepository repo ->
+                    if ((repo instanceof MavenArtifactRepository) &&
+                            urlsToRemove.any { repo.url.toString().startsWith(it) }) {
+                        project.logger.lifecycle "Repository ${repo.url} removed. Replaced with mirror"
+                        remove repo
+                    }
+                }
+
+                // add proxy repo
+                maven {
+                    url System.env.REPLACE_TARGET_URL
+                    credentials {
+                        username System.env.REPLACE_TARGET_USER
+                        password System.env.REPLACE_TARGET_PASSWORD
+                    }
+                }
+            }
+        }
+    }
+}

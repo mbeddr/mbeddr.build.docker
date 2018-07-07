@@ -84,3 +84,5 @@ RUN cd /tmp \
 
 
 RUN chmod +x /usr/bin/*
+
+COPY ./.gradle/init.d/* /root/.gradle/init.d/
