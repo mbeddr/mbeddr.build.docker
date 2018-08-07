@@ -69,11 +69,12 @@ RUN \
 	apt-get -y purge libpcre3-dev && apt-get -y autoremove
 
 RUN \
+	z3_version=4.7.1 && \
 	cd /tmp && \
-	wget -O z3.zip https://github.com/Z3Prover/z3/releases/download/z3-4.5.0/z3-4.5.0-x64-debian-8.5.zip && \
+	wget -O z3.zip https://github.com/Z3Prover/z3/releases/download/z3-${z3_version}/z3-${z3_version}-x64-ubuntu-16.04.zip && \
 	unzip z3.zip && \
-	mv z3-4.5.0-x64-debian-8.5/bin/z3 /usr/bin/ && \
-	rm -rf /tmp/z3-4.5.0-x64-debian-8.5 z3.zip
+	mv z3-${z3_version}-x64-ubuntu-16.04/bin/z3 /usr/bin/ && \
+	rm -rf /tmp/z3-${z3_version}-x64-ubuntu-16.04 z3.zip
 
 RUN cd /tmp \
 	&& wget https://bootstrap.pypa.io/get-pip.py \
