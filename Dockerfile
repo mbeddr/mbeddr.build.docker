@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 	make \
 	g++-multilib \
 	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
-	openjdk-8-jdk \
+	openjdk-8-jdk=8u162-b12-1 openjdk-8-jre=8u162-b12-1 openjdk-8-jdk-headless=8u162-b12-1 openjdk-8-jre-headless=8u162-b12-1 \
 	patch \
 	subversion \
 	supervisor \
@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	xvfb \
 	zip \
-	&& apt-get autoremove
+	&& apt-get autoremove \
+	&& update-java-alternatives -s java-1.8.0-openjdk-amd64
 
 RUN cd /tmp && \
 	wget https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 && \
