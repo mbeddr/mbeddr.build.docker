@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
 	flex \
-	g++ \
-	gcc \
+	g++-4.8 \
+	gcc-4.8 \
 	gdb \
 	git \
 	lcov \
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 	libwww-perl \
 	libxerces-c-dev \
 	make \
-	g++-multilib \
+	g++-4.8-multilib \
 	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
 	openjdk-8-jdk=8u162-b12-1 openjdk-8-jre=8u162-b12-1 openjdk-8-jdk-headless=8u162-b12-1 openjdk-8-jre-headless=8u162-b12-1 \
 	patch \
@@ -65,7 +65,7 @@ RUN \
 	wget -O cppcheck-${cppcheck_version}.tar.gz https://github.com/danmar/cppcheck/archive/${cppcheck_version}.tar.gz && \
 	tar -zxf cppcheck-${cppcheck_version}.tar.gz && \
 	apt-get -y install libpcre3-dev && \
-	(cd cppcheck-${cppcheck_version} && make install SRCDIR=build CFGDIR=/usr/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function") && \
+	(cd cppcheck-${cppcheck_version} && make install -j`nproc` SRCDIR=build CFGDIR=/usr/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function") && \
 	rm -rf cppcheck-${cppcheck_version}.tar.gz cppcheck-${cppcheck_version} && \
 	apt-get -y purge libpcre3-dev && apt-get -y autoremove
 
