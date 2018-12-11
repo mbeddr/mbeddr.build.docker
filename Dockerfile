@@ -75,6 +75,8 @@ RUN \
 	wget -O z3.zip https://github.com/Z3Prover/z3/releases/download/z3-${z3_version}/z3-${z3_version}-x64-ubuntu-16.04.zip && \
 	unzip z3.zip && \
 	mv z3-${z3_version}-x64-ubuntu-16.04/bin/z3 /usr/bin/ && \
+	mv z3-${z3_version}-x64-ubuntu-16.04/bin/libz3.so /usr/bin/ && \
+	mv z3-${z3_version}-x64-ubuntu-16.04/bin/libz3java.so /usr/bin/ && \
 	rm -rf /tmp/z3-${z3_version}-x64-ubuntu-16.04 z3.zip
 
 RUN cd /tmp \
