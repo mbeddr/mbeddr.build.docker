@@ -21,10 +21,12 @@ class EnterpriseRepositoryPlugin implements Plugin<Gradle> {
 
                 // add proxy repo
                 maven {
-                    url System.env.REPLACE_TARGET_URL
-                    credentials {
-                        username System.env.REPLACE_TARGET_USER
-                        password System.env.REPLACE_TARGET_PASSWORD
+                    if(System.env.REPLACE_TARGET_URL != null) {
+                        url System.env.REPLACE_TARGET_URL
+                        credentials {
+                            username System.env.REPLACE_TARGET_USER
+                            password System.env.REPLACE_TARGET_PASSWORD
+                        }
                     }
                 }
             }
