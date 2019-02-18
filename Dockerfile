@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	xvfb \
 	zip \
+	ninja-build \
 	&& apt-get autoremove \
 	&& update-java-alternatives -s java-1.8.0-openjdk-amd64
 
@@ -37,8 +38,8 @@ RUN cd /tmp && \
 	rm -rf bin/
 
 RUN \
-	cmake_major_minor=3.7 && \
-	cmake=cmake-${cmake_major_minor}.1-Linux-x86_64 && \
+	cmake_major_minor=3.10 && \
+	cmake=cmake-${cmake_major_minor}.2-Linux-x86_64 && \
 	cd /tmp && \
 	wget https://cmake.org/files/v${cmake_major_minor}/${cmake}.tar.gz && \
 	tar -xzvf ${cmake}.tar.gz && \
