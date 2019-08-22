@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y \
 	&& update-java-alternatives -s java-1.8.0-openjdk-amd64
 
 RUN cd /tmp && \
-	wget https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 && \
+	wget --progress=dot:mega https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2 && \
 	tar -xjvf linux-amd64-github-release.tar.bz2 && \
 	mv bin/linux/amd64/github-release /usr/bin/ && \
 	rm -rf bin/
@@ -41,13 +41,13 @@ RUN \
 	cmake_major_minor=3.10 && \
 	cmake=cmake-${cmake_major_minor}.2-Linux-x86_64 && \
 	cd /tmp && \
-	wget https://cmake.org/files/v${cmake_major_minor}/${cmake}.tar.gz && \
+	wget --progress=dot:mega https://cmake.org/files/v${cmake_major_minor}/${cmake}.tar.gz && \
 	tar -xzvf ${cmake}.tar.gz && \
 	cp -R ${cmake}/bin ${cmake}/share /usr && \
 	rm -rf ${cmake} ${cmake}.tar.gz
 
 RUN mkdir /buildAgent && cd /buildAgent && \
-	wget https://build.mbeddr.com/update/buildAgent.zip && \
+	wget --progress=dot:mega https://build.mbeddr.com/update/buildAgent.zip && \
 	unzip buildAgent.zip && \
 	chmod +x /buildAgent/bin/agent.sh
 ADD ./buildAgent.properties /buildAgent/conf/buildAgent.properties
@@ -63,7 +63,7 @@ COPY ./bin/* /usr/bin/
 RUN \
 	cppcheck_version=1.77 && \
 	cd /tmp && \
-	wget -O cppcheck-${cppcheck_version}.tar.gz https://github.com/danmar/cppcheck/archive/${cppcheck_version}.tar.gz && \
+	wget --progress=dot:mega -O cppcheck-${cppcheck_version}.tar.gz https://github.com/danmar/cppcheck/archive/${cppcheck_version}.tar.gz && \
 	tar -zxf cppcheck-${cppcheck_version}.tar.gz && \
 	apt-get -y install libpcre3-dev && \
 	(cd cppcheck-${cppcheck_version} && make install -j`nproc` SRCDIR=build CFGDIR=/usr/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function") && \
@@ -73,7 +73,7 @@ RUN \
 RUN \
 	z3_version=4.7.1 && \
 	cd /tmp && \
-	wget -O z3.zip https://github.com/Z3Prover/z3/releases/download/z3-${z3_version}/z3-${z3_version}-x64-ubuntu-16.04.zip && \
+	wget --progress=dot:mega -O z3.zip https://github.com/Z3Prover/z3/releases/download/z3-${z3_version}/z3-${z3_version}-x64-ubuntu-16.04.zip && \
 	unzip z3.zip && \
 	mv z3-${z3_version}-x64-ubuntu-16.04/bin/z3 /usr/bin/ && \
 	mv z3-${z3_version}-x64-ubuntu-16.04/bin/libz3.so /usr/bin/ && \
@@ -81,7 +81,7 @@ RUN \
 	rm -rf /tmp/z3-${z3_version}-x64-ubuntu-16.04 z3.zip
 
 RUN cd /tmp \
-	&& wget https://bootstrap.pypa.io/get-pip.py \
+	&& wget --progress=dot:mega https://bootstrap.pypa.io/get-pip.py \
 	&& python get-pip.py \
 	&& rm get-pip.py \
 	&& pip install mkdocs \
