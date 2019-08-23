@@ -95,9 +95,10 @@ ENV DISPLAY :0
 RUN apt-get install --yes libgtk2.0-0 libxslt1.1
 ## install jetbrains-JDK
 RUN export JBJDK_VERSION="jbrsdk-8u202-linux-x64-b1483.37" \
-    && wget --progress=dot:giga -O /tmp/${JBJDK_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jdk/download_file?file_path=${JBJDK_VERSION}.tar.gz \
+	&& wget --progress=dot:giga -O /tmp/${JBJDK_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jdk/download_file?file_path=${JBJDK_VERSION}.tar.gz \
 	&& mkdir /usr/lib/jvm/${JBJDK_VERSION} \
-	&& tar xzf /tmp/${JBJDK_VERSION}.tar.gz --directory /usr/lib/jvm/${JBJDK_VERSION}
+	&& tar xzf /tmp/${JBJDK_VERSION}.tar.gz --directory /usr/lib/jvm/${JBJDK_VERSION} \
+	&& rm /tmp/${JBJDK_VERSION}.tar.gz
 ## echo "Installed jetbrains-jdk version `cat /usr/lib/jvm/${JBJDK_VERSION}/release | grep JAVA_VERSION`" \
 ## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JBJDK_VERSION}/\" PATH=\"/usr/lib/jvm/${JBJDK_VERSION}/bin:$PATH\" to select this jdk"
 
