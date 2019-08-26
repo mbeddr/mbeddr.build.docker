@@ -94,8 +94,8 @@ ENV DISPLAY :0
 ## needed for javafx
 RUN apt-get install --yes libgtk2.0-0 libxslt1.1
 ## install jetbrains-JDK
-RUN export JBJDK_VERSION="jbrsdk-8u202-linux-x64-b1483.37" \
-	&& wget --progress=dot:giga -O /tmp/${JBJDK_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jdk/download_file?file_path=${JBJDK_VERSION}.tar.gz \
+ENV JBJDK_VERSION jbrsdk-8u202-linux-x64-b1483.37
+RUN wget --progress=dot:giga -O /tmp/${JBJDK_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jdk/download_file?file_path=${JBJDK_VERSION}.tar.gz \
 	&& mkdir /usr/lib/jvm/${JBJDK_VERSION} \
 	&& tar xzf /tmp/${JBJDK_VERSION}.tar.gz --directory /usr/lib/jvm/${JBJDK_VERSION} \
 	&& rm /tmp/${JBJDK_VERSION}.tar.gz
