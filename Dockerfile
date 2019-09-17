@@ -88,20 +88,31 @@ RUN cd /tmp \
 	&& pip install mkdocs-cinder
 
 
-# install jetbrains-JDK with functional javafx
+# install JetBrains JDK 8 with functional javafx
 ## for headless gtk
 ENV DISPLAY :0
 ## needed for javafx
 RUN apt-get install --yes libgtk2.0-0 libxslt1.1
-## install jetbrains-JDK
-ENV JBJDK_VERSION jbrsdk-8u202-linux-x64-b1483.37
-RUN wget --progress=dot:giga -O /tmp/${JBJDK_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jdk/download_file?file_path=${JBJDK_VERSION}.tar.gz \
-	&& mkdir /usr/lib/jvm/${JBJDK_VERSION} \
-	&& tar xzf /tmp/${JBJDK_VERSION}.tar.gz --directory /usr/lib/jvm/${JBJDK_VERSION} \
-	&& rm /tmp/${JBJDK_VERSION}.tar.gz
-## echo "Installed jetbrains-jdk version `cat /usr/lib/jvm/${JBJDK_VERSION}/release | grep JAVA_VERSION`" \
-## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JBJDK_VERSION}/\" PATH=\"/usr/lib/jvm/${JBJDK_VERSION}/bin:$PATH\" to select this jdk"
 
+## install JetBrains JDK 8
+ENV JB_JAVA8_VERSION jbrsdk-8u202-linux-x64-b1483.37
+RUN wget --progress=dot:giga -O /tmp/${JB_JAVA8_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jdk/download_file?file_path=${JB_JAVA8_VERSION}.tar.gz \
+	&& mkdir /usr/lib/jvm/${JB_JAVA8_VERSION} \
+	&& tar xzf /tmp/${JB_JAVA8_VERSION}.tar.gz --directory /usr/lib/jvm/${JB_JAVA8_VERSION} \
+	&& rm /tmp/${JB_JAVA8_VERSION}.tar.gz
+ENV JB_JAVA8_HOME /usr/lib/jvm/${JB_JAVA8_VERSION}
+## echo "Installed JetBrains JDK 8 version `cat /usr/lib/jvm/${JB_JAVA8_VERSION}/release | grep JAVA_VERSION`" \
+## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JB_JAVA8_VERSION}/\" PATH=\"/usr/lib/jvm/${JB_JAVA8_VERSION}/bin:$PATH\" to select this jdk"
+
+## install JetBrains JDK 11
+ENV JB_JAVA11_VERSION jbrsdk-11_0_3-linux-x64-b304.39
+RUN wget --progress=dot:giga -O /tmp/${JB_JAVA11_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jbr/download_file?file_path=${JB_JAVA11_VERSION}.tar.gz \
+	&& tar xzf /tmp/${JB_JAVA11_VERSION}.tar.gz --directory /tmp \
+	&& mv /tmp/jbrsdk /usr/lib/jvm/${JB_JAVA11_VERSION} \
+	&& rm /tmp/${JB_JAVA11_VERSION}.tar.gz
+ENV JB_JAVA11_HOME /usr/lib/jvm/${JB_JAVA11_VERSION}
+## echo "Installed JetBrains JDK 8 version `cat /usr/lib/jvm/${JB_JAVA11_VERSION}/release | grep JAVA_VERSION`" \
+## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JB_JAVA11_VERSION}/\" PATH=\"/usr/lib/jvm/${JB_JAVA11_VERSION}/bin:$PATH\" to select this jdk"
 
 RUN chmod +x /usr/bin/*
 
