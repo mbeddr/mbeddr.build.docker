@@ -1,4 +1,4 @@
-#mbeddr.build.docker
+# mbeddr.build.docker
 
 This repository contains the source code for the docker images used to build mbeddr and other MPS based projects.
 It is basically a teamcity build agent with some additional packages for compiling.
@@ -20,3 +20,15 @@ docker run --name buildAgent1 -d --restart=always --storage-opt size=50G -e AGEN
 
 The agent gets its name from the environment variable `AGENT_NAME`. This name will showup in the teamcity web ui. If you don't set
 the name you will endup with a agent called `placeholder`.
+
+# JDK selection
+
+By default, the openjdk 8 will be used. Set env vars `PATH` and `JAVA_HOME` to select a jetbrains jdk:
+
+```
+# for jetbrains java 8
+export JAVA_HOME="/usr/lib/jvm/${JB_JAVA8_VERSION}/" PATH="/usr/lib/jvm/${JB_JAVA8_VERSION}/bin:$PATH"
+
+# for jetbrains java 11
+export JAVA_HOME="/usr/lib/jvm/${JB_JAVA11_VERSION}/" PATH="/usr/lib/jvm/${JB_JAVA11_VERSION}/bin:$PATH"
+```
