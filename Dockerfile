@@ -94,6 +94,8 @@ ENV DISPLAY :0
 ## needed for javafx
 RUN apt-get install --yes libgtk2.0-0 libxslt1.1
 
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
 ## install JetBrains JDK 8
 ENV JB_JAVA8_VERSION jbrsdk-8u202-linux-x64-b1483.37
 RUN wget --progress=dot:giga -O /tmp/${JB_JAVA8_VERSION}.tar.gz https://bintray.com/jetbrains/intellij-jdk/download_file?file_path=${JB_JAVA8_VERSION}.tar.gz \
