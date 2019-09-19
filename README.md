@@ -27,8 +27,8 @@ By default, the openjdk 8 will be used. Set env vars `PATH` and `JAVA_HOME` to s
 
 ```
 # for jetbrains java 8
-export JAVA_HOME="/usr/lib/jvm/${JB_JAVA8_VERSION}/" PATH="/usr/lib/jvm/${JB_JAVA8_VERSION}/bin:$PATH"
+export JAVA_HOME=$JB_JAVA8_HOME PATH="${JB_JAVA8_HOME}/bin:$PATH"
 
 # for jetbrains java 11
-export JAVA_HOME="/usr/lib/jvm/${JB_JAVA11_VERSION}/" PATH="/usr/lib/jvm/${JB_JAVA11_VERSION}/bin:$PATH"
+export JAVA_HOME=$JB_JAVA11_HOME PATH="${JB_JAVA11_HOME}/bin:$PATH"
 ```
