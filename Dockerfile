@@ -116,6 +116,10 @@ ENV JB_JAVA11_HOME /usr/lib/jvm/${JB_JAVA11_VERSION}
 ## echo "Installed JetBrains JDK 8 version `cat /usr/lib/jvm/${JB_JAVA11_VERSION}/release | grep JAVA_VERSION`" \
 ## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JB_JAVA11_VERSION}/\" PATH=\"/usr/lib/jvm/${JB_JAVA11_VERSION}/bin:$PATH\" to select this jdk"
 
+## configure locale to use UTF-8 encoding
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
 RUN chmod +x /usr/bin/*
 
 COPY ./.gradle/init.d/* /root/.gradle/init.d/
