@@ -122,5 +122,3 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 RUN chmod +x /usr/bin/*
-
-COPY ./.gradle/init.d/* /root/.gradle/init.d/
