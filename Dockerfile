@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
 	xvfb \
 	zip \
 	ninja-build \
+	python3 \
 	&& apt-get autoremove \
 	&& update-java-alternatives -s java-1.8.0-openjdk-amd64
 
@@ -82,8 +83,8 @@ RUN \
 	rm -rf /tmp/z3-${z3_version}-x64-ubuntu-16.04 z3.zip
 
 RUN cd /tmp \
-	&& wget --progress=dot:mega https://bootstrap.pypa.io/2.7/get-pip.py \
-	&& python get-pip.py \
+	&& wget --progress=dot:mega https://bootstrap.pypa.io/get-pip.py \
+	&& python3 get-pip.py \
 	&& rm get-pip.py \
 	&& pip install mkdocs \
 	&& pip install mkdocs-cinder
