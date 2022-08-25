@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
 	zip \
 	ninja-build \
 	python3 \
+	python3-pip \
 	&& apt-get autoremove \
 	&& update-java-alternatives -s java-1.8.0-openjdk-amd64
 
