@@ -83,11 +83,8 @@ RUN \
 	rm -rf /tmp/z3-${z3_version}-x64-ubuntu-16.04 z3.zip
 
 RUN cd /tmp \
-	&& wget --progress=dot:mega https://bootstrap.pypa.io/3.6/get-pip.py \
-	&& python3 get-pip.py \
-	&& rm get-pip.py \
-	&& pip install mkdocs \
-	&& pip install mkdocs-cinder
+	&& python3 -m pip install mkdocs \
+	&& python3 -m pip install mkdocs-cinder
 
 
 # install JetBrains JDK 8 with functional javafx
