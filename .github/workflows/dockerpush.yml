@@ -71,7 +71,7 @@ jobs:
         run: docker logout docker.pkg.github.com
         
       - name: Login into Docker Hub registry 
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username="${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login --username="${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Push image to DockerHub
         run: |
