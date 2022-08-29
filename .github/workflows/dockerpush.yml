@@ -75,7 +75,7 @@ jobs:
 
       - name: Push image to DockerHub
         run: |
-          IMAGE_ID=${{ github.repository }}/$IMAGE_NAME
+          IMAGE_ID=mbeddr/$IMAGE_NAME
 
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
