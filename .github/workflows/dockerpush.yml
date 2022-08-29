@@ -71,11 +71,11 @@ jobs:
         run: docker logout docker.pkg.github.com
         
       - name: Login into Docker Hub registry 
-        run: docker login --username=${{ secrets.DOCKER_USERNAME }} --email=${{ secrets.DOCKER_PASSWORD }}
+        run: docker login --username="${{ secrets.DOCKER_USERNAME }}" --email="${{ secrets.DOCKER_PASSWORD }}"
 
       - name: Push image to DockerHub
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          IMAGE_ID=${{ github.repository }}/$IMAGE_NAME
 
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
