@@ -21,6 +21,20 @@ docker run --name buildAgent1 -d --restart=always --storage-opt size=50G -e AGEN
 The agent gets its name from the environment variable `AGENT_NAME`. This name will show up in the teamcity web ui. If
 you don't set the name you will endup with a agent called `placeholder`.
 
+## Runnning the agent locally for troubleshooting
+
+Docker can be installed [locally](https://docs.docker.com/get-docker). After starting Docker, execute the two commands of the previous section on the command line. You can start a command line in the started container by executing:
+
+```
+docker exec -it your_container_id /bin/bash
+```
+
+You can clone your Git repository via `git` and edit your builds script with an editor (you might need to install vi or nano inside the container via `apt-get install`). Make sure to select the correct Java versions when executing your build.
+
+Here is an example for a Gradle script to execute it with JDK 11:
+
+```gradlew build -Dorg.gradle.java.home=$JB_JAVA11_HOME```
+
 # Installed JDKs
 
 These JDKs are installed:
@@ -36,3 +50,8 @@ Builds using a recent version of [`mps-gradle-plugin`](https://github.com/mbeddr
 to use for a particular invocation of MPS by setting the `executable` parameter (see the [documentation of the
 `RunAntScript` task](https://github.com/mbeddr/mps-gradle-plugin/#runantscript)). This makes it possible to build
 different branches of the same project with different JDKs without having to duplicate build configurations.
+
+# Information about package versions
+
+The exact version of an installed package depends on the used Linux image. Example: Ubuntu bionic is used as the base image. That means that the installed Python3 version is the latest version that can be found in this ubuntu version's repository which would be Python [3.6.5](https://packages.ubuntu.com/bionic/python3) at the time of writing. [Check version of Installed Package on Ubuntu / Debian](https://computingforgeeks.com/check-version-of-installed-package-on-ubuntu-debian/) describes how you can check the installed package version in your local Docker container.
+
