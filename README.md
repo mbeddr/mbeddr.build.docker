@@ -25,10 +25,10 @@ you don't set the name you will endup with a agent called `placeholder`.
 
 These JDKs are installed:
 - OpenJDK 8 at $JAVA_HOME (default, used by the TeamCity agent)
-- JetBrains Runtime (JDK) 8 at $JB_JAVA8_HOME
 - JetBrains Runtime (JDK) 11 at $JB_JAVA11_HOME
+- JetBrains Runtime (JDK) 17 at $JB_JAVA17_HOME
 
-MPS requires JDK 8 up to version 2019.1 but requires JDK 11 since version 2019.2.
+MPS requires JDK 8 up to version 2019.1 but requires JDK 11 since version 2019.2. Since 2022.2 MPS requires JDK 17.
 
 You can configure a build step in TeamCity to use a specific non-default JDK.
 
