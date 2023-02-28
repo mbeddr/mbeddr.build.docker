@@ -113,8 +113,18 @@ RUN wget --progress=dot:giga -O /tmp/${JB_JAVA11_VERSION}.tar.gz https://artifac
 	&& mv /tmp/jbrsdk /usr/lib/jvm/${JB_JAVA11_VERSION} \
 	&& rm /tmp/${JB_JAVA11_VERSION}.tar.gz
 ENV JB_JAVA11_HOME /usr/lib/jvm/${JB_JAVA11_VERSION}
-## echo "Installed JetBrains JDK 8 version `cat /usr/lib/jvm/${JB_JAVA11_VERSION}/release | grep JAVA_VERSION`" \
+## echo "Installed JetBrains JDK 11 version `cat /usr/lib/jvm/${JB_JAVA11_VERSION}/release | grep JAVA_VERSION`" \
 ## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JB_JAVA11_VERSION}/\" PATH=\"/usr/lib/jvm/${JB_JAVA11_VERSION}/bin:$PATH\" to select this jdk"
+
+## install JetBrains JDK 17
+ENV JB_JAVA17_VERSION 17.0.3-b469.32
+RUN wget --progress=dot:giga -O /tmp/${JB_JAVA17_VERSION}.tar.gz https://artifacts.itemis.cloud/repository/maven-mps/com/jetbrains/jdk/jbr/${JB_JAVA17_VERSION}/jbr-${JB_JAVA17_VERSION}-linux-x64.tgz \
+	&& tar xzf /tmp/${JB_JAVA17_VERSION}.tar.gz --directory /tmp \
+	&& mv /tmp/jbrsdk /usr/lib/jvm/${JB_JAVA17_VERSION} \
+	&& rm /tmp/${JB_JAVA17_VERSION}.tar.gz
+ENV JB_JAVA17_HOME /usr/lib/jvm/${JB_JAVA17_VERSION}
+## echo "Installed JetBrains JDK 17 version `cat /usr/lib/jvm/${JB_JAVA17_VERSION}/release | grep JAVA_VERSION`" \
+## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JB_JAVA17_VERSION}/\" PATH=\"/usr/lib/jvm/${JB_JAVA17_VERSION}/bin:$PATH\" to select this jdk"
 
 ## configure locale to use UTF-8 encoding
 ENV LANG C.UTF-8
