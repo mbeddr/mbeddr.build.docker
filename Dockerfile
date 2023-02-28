@@ -107,8 +107,8 @@ ENV JB_JAVA8_HOME /usr/lib/jvm/${JB_JAVA8_VERSION}
 ## echo "Run export JAVA_HOME=\"/usr/lib/jvm/${JB_JAVA8_VERSION}/\" PATH=\"/usr/lib/jvm/${JB_JAVA8_VERSION}/bin:$PATH\" to select this jdk"
 
 ## install JetBrains JDK 11
-ENV JB_JAVA11_VERSION 11_0_9-b944.49
-RUN wget --progress=dot:giga -O /tmp/${JB_JAVA11_VERSION}.tar.gz https://projects.itemis.de/nexus/content/repositories/mbeddr/com/jetbrains/jdk/jbrsdk/${JB_JAVA11_VERSION}/jbrsdk-${JB_JAVA11_VERSION}-linux-x64.tgz \
+ENV JB_JAVA11_VERSION 11_0_14_1-b1751.46
+RUN wget --progress=dot:giga -O /tmp/${JB_JAVA11_VERSION}.tar.gz https://artifacts.itemis.cloud/repository/maven-mps/com/jetbrains/jdk/jbrsdk/${JB_JAVA11_VERSION}/jbrsdk-${JB_JAVA11_VERSION}-linux-x64.tgz \
 	&& tar xzf /tmp/${JB_JAVA11_VERSION}.tar.gz --directory /tmp \
 	&& mv /tmp/jbrsdk /usr/lib/jvm/${JB_JAVA11_VERSION} \
 	&& rm /tmp/${JB_JAVA11_VERSION}.tar.gz
