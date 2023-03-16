@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
 	flex \
-	g++-8 \
+	g++ \
 	gcc-8 \
 	gdb \
 	git \
