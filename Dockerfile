@@ -1,5 +1,5 @@
 FROM ubuntu:focal
-MAINTAINER Kolja Dummann <kolja.dummann@logv.ws>
+MAINTAINER MPS CI Team <mps-ci@itemis.de>
 RUN dpkg --add-architecture i386
 RUN apt-get update && apt-get install -y \
 	ant \
