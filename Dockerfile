@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
 	build-essential \
 	bison \
 	ca-certificates \
+    cppcheck \
 	curl \
 	flex \
 	g++ \
@@ -62,17 +63,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /start
 CMD ["/usr/bin/supervisord"]
 COPY ./bin/* /usr/bin/
-
-# Install our own cppcheck because 1.67 in jessie is buggy
-RUN \
-	cppcheck_version=1.77 && \
-	cd /tmp && \
-	wget --progress=dot:mega -O cppcheck-${cppcheck_version}.tar.gz https://github.com/danmar/cppcheck/archive/${cppcheck_version}.tar.gz && \
-	tar -zxf cppcheck-${cppcheck_version}.tar.gz && \
-	apt-get -y install libpcre3-dev && \
-	(cd cppcheck-${cppcheck_version} && make install -j`nproc` SRCDIR=build CFGDIR=/usr/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function") && \
-	rm -rf cppcheck-${cppcheck_version}.tar.gz cppcheck-${cppcheck_version} && \
-	apt-get -y purge libpcre3-dev && apt-get -y autoremove
 
 RUN \
 	z3_version=4.7.1 && \
