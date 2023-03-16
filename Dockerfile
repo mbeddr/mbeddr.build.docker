@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 	nsis \
 	g++-multilib \
 	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
-	openjdk-8-jdk=8u162-b12-1 openjdk-8-jre=8u162-b12-1 openjdk-8-jdk-headless=8u162-b12-1 openjdk-8-jre-headless=8u162-b12-1 \
+	openjdk-8-jdk=8u252-b09-1ubuntu1 openjdk-8-jre=8u252-b09-1ubuntu1 openjdk-8-jdk-headless=8u252-b09-1ubuntu1 openjdk-8-jre-headless=8u252-b09-1ubuntu1 \
 	patch \
 	subversion \
 	supervisor \
