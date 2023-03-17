@@ -1,14 +1,16 @@
-FROM ubuntu:bionic
-MAINTAINER Kolja Dummann <kolja.dummann@logv.ws>
+FROM ubuntu:focal
+MAINTAINER MPS CI Team <mps-ci@itemis.de>
 RUN dpkg --add-architecture i386
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
 	ant \
 	build-essential \
 	bison \
 	ca-certificates \
+    cppcheck \
 	curl \
 	flex \
-	g++-8 \
+	g++ \
 	gcc-8 \
 	gdb \
 	git \
@@ -18,9 +20,9 @@ RUN apt-get update && apt-get install -y \
 	libxerces-c-dev \
 	make \
 	nsis \
-	g++-4.8-multilib \
+	g++-multilib \
 	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
-	openjdk-8-jdk=8u162-b12-1 openjdk-8-jre=8u162-b12-1 openjdk-8-jdk-headless=8u162-b12-1 openjdk-8-jre-headless=8u162-b12-1 \
+	openjdk-8-jdk=8u252-b09-1ubuntu1 openjdk-8-jre=8u252-b09-1ubuntu1 openjdk-8-jdk-headless=8u252-b09-1ubuntu1 openjdk-8-jre-headless=8u252-b09-1ubuntu1 \
 	patch \
 	subversion \
 	supervisor \
@@ -61,17 +63,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /start
 CMD ["/usr/bin/supervisord"]
 COPY ./bin/* /usr/bin/
-
-# Install our own cppcheck because 1.67 in jessie is buggy
-RUN \
-	cppcheck_version=1.77 && \
-	cd /tmp && \
-	wget --progress=dot:mega -O cppcheck-${cppcheck_version}.tar.gz https://github.com/danmar/cppcheck/archive/${cppcheck_version}.tar.gz && \
-	tar -zxf cppcheck-${cppcheck_version}.tar.gz && \
-	apt-get -y install libpcre3-dev && \
-	(cd cppcheck-${cppcheck_version} && make install -j`nproc` SRCDIR=build CFGDIR=/usr/share/cppcheck/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function") && \
-	rm -rf cppcheck-${cppcheck_version}.tar.gz cppcheck-${cppcheck_version} && \
-	apt-get -y purge libpcre3-dev && apt-get -y autoremove
 
 RUN \
 	z3_version=4.7.1 && \
