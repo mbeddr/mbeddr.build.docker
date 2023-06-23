@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
 	build-essential \
 	bison \
 	ca-certificates \
-    cppcheck \
+        cppcheck \
 	curl \
 	flex \
 	g++ \
@@ -15,9 +15,11 @@ RUN apt-get update && apt-get install -y \
 	gdb \
 	git \
 	lcov \
+        libgbm-dev \
 	libz-dev \
 	libwww-perl \
 	libxerces-c-dev \
+        libxss1 \
 	make \
 	nsis \
 	g++-multilib \
