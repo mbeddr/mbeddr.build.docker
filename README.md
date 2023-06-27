@@ -21,7 +21,7 @@ docker run --name buildAgent1 -d --restart=always --storage-opt size=50G -e AGEN
 The agent gets its name from the environment variable `AGENT_NAME`. This name will show up in the teamcity web ui. If
 you don't set the name you will endup with a agent called `placeholder`.
 
-## Runnning the agent locally for troubleshooting
+## Running the agent locally for troubleshooting
 
 Docker can be installed [locally](https://docs.docker.com/get-docker). After starting Docker, execute the two commands of the previous section on the command line. You can start a command line in the started container by executing:
 
