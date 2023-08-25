@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y \
 	libwww-perl \
 	libxerces-c-dev \
         libxss1 \
-	libxkbcommon-x11-0 \
 	make \
 	nsis \
 	g++-multilib \
