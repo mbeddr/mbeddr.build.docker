@@ -2,7 +2,7 @@ FROM ubuntu:focal
 MAINTAINER MPS CI Team <mps-ci@itemis.de>
 RUN dpkg --add-architecture i386
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install aptitude -y && aptitude install -y \
 	ant \
 	build-essential \
 	bison \
@@ -20,11 +20,10 @@ RUN apt-get update && apt-get install -y \
 	libwww-perl \
 	libxerces-c-dev \
         libxss1 \
-	libxkbcommon-x11-0 \
 	make \
 	nsis \
 	g++-multilib \
-	libstdc++6:i386 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
+	libstdc++6:i386=10-20200411-0ubuntu1 libgcc1:i386 zlib1g:i386 libncurses5:i386 \
 	openjdk-8-jdk=8u252-b09-1ubuntu1 openjdk-8-jre=8u252-b09-1ubuntu1 openjdk-8-jdk-headless=8u252-b09-1ubuntu1 openjdk-8-jre-headless=8u252-b09-1ubuntu1 \
 	patch \
 	subversion \
