@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
 	build-essential \
 	bison \
 	ca-certificates \
-    	cppcheck \
+        cppcheck \
 	curl \
 	flex \
 	g++ \
@@ -15,11 +15,11 @@ RUN apt-get update && apt-get install -y \
 	gdb \
 	git \
 	lcov \
-    	libgbm-dev \
+        libgbm-dev \
 	libz-dev \
 	libwww-perl \
 	libxerces-c-dev \
-   	 libxss1 \
+        libxss1 \
 	make \
 	nsis \
 	g++-multilib \
@@ -59,12 +59,10 @@ RUN mkdir /buildAgent && cd /buildAgent && \
 	chmod +x /buildAgent/bin/agent.sh
 ADD ./buildAgent.properties /buildAgent/conf/buildAgent.properties
 ADD ./start.sh /start
-ADD ./checkXvfb.sh /checkXvfb
 RUN mkdir -p /root/.ssh /var/log/supervisor
 ADD ./sshconfig /root/.ssh/config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /start
-RUN chmod +x /checkXvfb
 CMD ["/usr/bin/supervisord"]
 COPY ./bin/* /usr/bin/
 
